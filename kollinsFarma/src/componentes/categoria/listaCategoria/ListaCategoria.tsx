@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-
+import { Dna } from "react-loader-spinner";
 import { buscar } from "../../../service/Service";
-
 import Categoria from "../../../models/Categoria";
 import CardCategorias from "../cardCategoria/CardCategoria";
 
@@ -12,7 +11,7 @@ function ListaCategorias() {
     try {
       await buscar("/categorias", setCategorias);
     } catch (error: any) {
-      alert(error);
+      console.log(error);
     }
   }
 
@@ -23,10 +22,14 @@ function ListaCategorias() {
   return (
     <>
       {categorias.length === 0 && (
-        <div className="flex justify-center w-full absolute top-1/2">
-          color="#40739e" loading size={28}
-          speedMultiplier={0.7}
-        </div>
+        <Dna
+          visible={true}
+          height="200"
+          width="200"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper mx-auto"
+        />
       )}
 
       <div className="flex justify-center w-full my-4">
